@@ -1,0 +1,119 @@
+.App {
+  text-align: center;
+  font-size:large;
+  min-height: 100vh;
+  background:linear-gradient(to right top,#9bebdc,#3fb6b0)
+}
+.error{
+  margin-top:10px ;
+color:orange;
+font-size: small;
+}
+.loginSignup{
+    margin-left: 40%;
+    margin-top: 20px;
+    height: 23rem;
+    width: 15rem;
+    text-align: left;
+}
+i{
+    cursor: pointer;
+    height: 35px;
+    color:black;
+    width:60px;
+    padding-top:10px;
+    background-color: white;
+}
+#search{  
+  height: 35px;
+  width:200px;
+  border: 1px solid white;
+  border-radius: 0px;
+}
+#div{
+  background-color:  white;
+}
+#searchIcon{
+  border-radius: 15px 0px 0px 15px;
+}
+#mic{
+  margin-left:-8px;
+  border-radius: 0px 15px 15px 0px;
+}
+.login, .signup, .logout{
+  width:90px;
+  margin-left:10px;
+  border-radius: 22px;
+}
+.userName{
+  margin-left:10px;
+  color:white;
+  font-size: 20px;
+  font-weight: 50px;
+}
+input{
+  outline:none;
+  border-radius: 15px;
+}
+.navbar{
+  width: 100%;
+  height: 60px;
+  font-weight: 400;
+  font-size: 20px;
+  background-color: #188ded;
+}
+
+tr{
+  border-bottom: 1px solid rgb(180, 174, 174);
+}
+thead tr{
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+}
+img{
+  height: 400px;
+  width: 90%;
+}
+.slideButton{
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin:5px;
+  border:none;
+  font-size: 65px;
+  padding-bottom: 10px; 
+  background: #68e4a5e0;
+}
+.slideButton:focus{
+  outline: 0 !important;
+}
+img{
+  border-radius: 20px;
+  min-width:60%;
+  min-height: 40%;
+}
+.container{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+.slideButtons{
+  background:none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border:none;
+  font-weight: 900;
+  font-size: xx-large;
+  color:rgb(151, 151, 151);
+  position: absolute;
+  z-index: 20;
+}
+.slideButtons:focus{
+  outline: 0 !important;
+}
