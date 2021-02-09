@@ -1,8 +1,6 @@
-import React from "react";
-import Table from 'react-bootstrap/Table';
+import { Table } from 'reactstrap';
 
 function ItemList(props) {
-
 
     return (
         <>
@@ -10,7 +8,7 @@ function ItemList(props) {
                 (props.error !== undefined) ? (
                     <div style={{ color: "red", fontSize: "30px", }}>{props.error}</div>
                 ) : (
-                        <Table striped bordered hover variant="dark" style={{
+                        <Table striped bordered hover dark style={{
                             width: "450px",
                             marginLeft: "30px",
                             marginTop: "40px",

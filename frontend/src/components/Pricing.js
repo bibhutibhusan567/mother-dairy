@@ -1,6 +1,5 @@
-import Button from 'react-bootstrap/Button';
+import { Card, CardText, CardBody, CardTitle, Button } from 'reactstrap';
 import { useHistory } from "react-router-dom";
-import Card from 'react-bootstrap/Card';
 import milkArray from '../images/Milk/MilkArray';
 import dahiArray from '../images/Curd/DahiArray';
 import chachArray from '../images/Chach/ChachArray';
@@ -41,9 +40,9 @@ export default function Pricing(props) {
                     return (
                         <Card key={idx} style={{ width: '18rem', marginTop: "20px" }}>
                             <ImageSlide imageArray={product.imageArray} />
-                            < Card.Body >
-                                <Card.Title>{product.product}s</Card.Title>
-                                <Card.Text style={{ textAlign: "left" }}>
+                            < CardBody >
+                                <CardTitle>{product.product}s</CardTitle>
+                                <CardText style={{ textAlign: "left" }}>
                                     <div>Variety: {product.variety}</div>
                                     <div>Quantity: {product.quantity}</div>
                                     <div>Price Range:</div>
@@ -52,9 +51,9 @@ export default function Pricing(props) {
                                         <div>Maximum: {product.maxPrice}&#8377;</div>
                                     </div>
 
-                                </Card.Text>
+                                </CardText>
                                 <Button variant="primary" onClick={() => showProduct(product.product)}>Purchase</Button>
-                            </ Card.Body>
+                            </ CardBody>
                         </Card >
                     );
                 })

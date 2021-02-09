@@ -1,33 +1,37 @@
 import React, { useState } from 'react';
-import Navbar from 'react-bootstrap/Navbar';
-import Nav from 'react-bootstrap/Nav';
-import Button from 'react-bootstrap/Button';
-import NavDropdown from 'react-bootstrap/NavDropdown';
-import DropdownButton from 'react-bootstrap/DropdownButton';
-import Dropdown from 'react-bootstrap/Dropdown';
+import {
+    Button, ButtonDropdown, Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem, NavbarText
+} from 'reactstrap';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
-import "./App.css";
 import { useHistory } from "react-router-dom";
 
-function FrontPage(props) {
-    const { transcript, resetTranscript } = useSpeechRecognition()
+function Header(props) {
+    const { transcript, resetTranscript } = useSpeechRecognition();
     const [searchValue, setSearchValue] = useState();
     const [micStart, setMicStart] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
+    const [dropdownOpen, setOpen] = useState(false);
     let history = useHistory();
+
+    const toggle = () => setIsOpen(!isOpen);
+    const toggleButton = () => setOpen(!dropdownOpen);
 
     if (!SpeechRecognition.browserSupportsSpeechRecognition()) {
         return null
     };
+
     const startMic = () => {
         resetTranscript();
         SpeechRecognition.startListening();
         setMicStart(true);
         setTimeout(stopMic, 7 * 1000);
     }
+
     const stopMic = () => {
         setMicStart(false);
         SpeechRecognition.stopListening();
     }
+
     const takeInput = (event) => {
         console.log(event.target.value.trim());
         resetTranscript();
@@ -36,34 +40,49 @@ function FrontPage(props) {
     }
 
     return (<>
-        <Navbar variant="dark" className="navbar">
-            <Navbar.Brand href="home" style={{ font: "italic", color: "black" }}>MotherDairy</Navbar.Brand>
+
+        <Navbar color="dark" dark style={{ color: "white" }}>
+            <NavbarBrand href="home" className="logo">Mother Dairy</NavbarBrand>
             <Nav className="mr-auto">
-                <Nav.Link href="/home">Home</Nav.Link>
-                <Nav.Link href="/pricing">Pricing</Nav.Link>
+                <NavItem>
+                    <NavLink href="/home">Home</NavLink>
+                </NavItem>
+
+                <NavLink href="/pricing">Pricing</NavLink>
                 {props.showProductOption ? (
-                    <NavDropdown title="Products" id="nav-dropdown" onClick={() => history.push("/products")} >
-                        <NavDropdown.Item onClick={() => props.showProducts("Milk")}>Milk</NavDropdown.Item>
-                        <NavDropdown.Item onClick={() => props.showProducts("Curd")}>Curd</NavDropdown.Item>
-                        <NavDropdown.Item onClick={() => props.showProducts("Chach")}>Chach</NavDropdown.Item>
-                        <NavDropdown.Item onClick={() => props.showProducts("Paneer")}>Paneer</NavDropdown.Item>
-                        <NavDropdown.Item onClick={() => props.showProducts("Butter")}>Butter</NavDropdown.Item>
-                        <NavDropdown.Item onClick={() => props.showProducts("Cheese")}>Cheese</NavDropdown.Item>
-                        <NavDropdown.Item onClick={() => props.showProducts("Sweet")}>Sweets</NavDropdown.Item>
-                        <DropdownButton variant="light" drop="right" title="Ice Creams">
-                            <Dropdown.Item onClick={() => props.showProducts("Bricks And Super Saver Packs")}>Bricks And Super Saver Packs</Dropdown.Item>
-                            <Dropdown.Item onClick={() => props.showProducts("Bar")}>Bars</Dropdown.Item>
-                            <Dropdown.Item onClick={() => props.showProducts("Cone")}>Cones</Dropdown.Item>
-                            <Dropdown.Item onClick={() => props.showProducts("Kulfi")}>Kulfi</Dropdown.Item>
-                        </DropdownButton>
-                    </NavDropdown>
+                    <UncontrolledDropdown nav inNavbar>
+                        <DropdownToggle nav caret id="nav-dropdown" toggle={toggle} >
+                            Products
+              </DropdownToggle>
+                        <DropdownMenu>
+                            <DropdownItem onClick={() => props.showProducts("Milk")}>Milk</DropdownItem>
+                            <DropdownItem onClick={() => props.showProducts("Curd")}>Curd</DropdownItem>
+                            <DropdownItem onClick={() => props.showProducts("Chach")}>Chach</DropdownItem>
+                            <DropdownItem onClick={() => props.showProducts("Paneer")}>Paneer</DropdownItem>
+                            <DropdownItem onClick={() => props.showProducts("Butter")}>Butter</DropdownItem>
+                            <DropdownItem onClick={() => props.showProducts("Cheese")}>Cheese</DropdownItem>
+                            <DropdownItem onClick={() => props.showProducts("Sweet")}>Sweets</DropdownItem>
+
+                            <ButtonDropdown isOpen={dropdownOpen} toggle={toggleButton}>
+                                <DropdownToggle caret>
+                                    Ice-cream
+                            </DropdownToggle>
+                                <DropdownMenu>
+                                    <DropdownItem onClick={() => props.showProducts("Bricks And Super Saver Packs")}>Bricks And Super Saver Packs</DropdownItem>
+                                    <DropdownItem onClick={() => props.showProducts("Bar")}>Bars</DropdownItem>
+                                    <DropdownItem onClick={() => props.showProducts("Cone")}>Cones</DropdownItem>
+                                    <DropdownItem onClick={() => props.showProducts("Kulfi")}>Kulfi</DropdownItem>
+                                </DropdownMenu>
+                            </ButtonDropdown>
+                        </DropdownMenu>
+                    </UncontrolledDropdown>
                 ) : null}
-                {props.loggedin ? (<Nav.Link
+                {props.loggedin ? (<NavLink
                     onClick={() => {
                         props.purchaseHistoryHandler(props.userName);
                         history.push('/history')
                     }}
-                >Purchase History</Nav.Link>) : null}
+                >Purchase History</NavLink>) : null}
             </Nav>
             <i
                 id="searchIcon"
@@ -117,4 +136,4 @@ function FrontPage(props) {
     </>
     )
 }
-export default FrontPage;
+export default Header;

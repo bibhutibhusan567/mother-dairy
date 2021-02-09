@@ -1,19 +1,19 @@
-import React, { useState, useEffect } from "react";
-import { Switch, Route } from "react-router-dom";
-import FrontPage from './FrontPage';
-import ItemList from "./ItemList";
-import PriceCard from "./PriceCard";
-import Duration from './Duration';
-import CheckOut from './CheckOut';
-import './App.css';
-import FinalGreeting from "./FinalGreeting";
-import PurchaseHistory from "./PurchaseHistory";
+import Header from './components/Header';
+import ItemList from "./components/ItemList";
+import PriceCard from "./components/PriceCard";
+import Duration from './components/Duration';
+import CheckOut from './components/CheckOut';
+import FinalGreeting from "./components/FinalGreeting";
+import PurchaseHistory from "./components/PurchaseHistory";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
 import ChangePassword from "./components/ChangePassword";
 import HomePage from './components/HomePage';
 import Pricing from './components/Pricing';
 import { useHistory } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Switch, Route } from "react-router-dom";
+import './App.css';
 
 function App() {
   let newhistory = useHistory();
@@ -34,19 +34,21 @@ function App() {
   const [productArray, setProductArray] = useState([]);
   const [purchaseItems, setPurchaseItems] = useState([]);
   const [loggedin, setLoggedin] = useState(false);
-  const [userName, setUserName] = useState();
+  const [userName, setUserName] = useState("");
   const [showMessage, setShowMessage] = useState(false);
   const [showFinalGreeting, setShowFinalGreeting] = useState(false);
   const [proceedToPay, setProceedToPay] = useState(false);
   const [buttonsDisable, setButtonsDisable] = useState(false);
   const [history, setHistory] = useState([]);
   const [showHistory, setShowHistory] = useState(false);
+
   //number of Items function
   const confirm = (count) => {
     console.log("final", count);
     setNumberOfItems(count);
     setPrice(price * count);
   }
+
   //payment process
   const paymentProcess = () => {
     setProceedToPay(true);
@@ -433,19 +435,20 @@ function App() {
 
   return (
     <div className="App" >
-      <div><FrontPage
-        loggedin={loggedin}
-        userName={userName}
-        search={search}
-        showProducts={showProducts}
-        showProductOption={showProductOption}
-        logoutHandler={logoutHandler}
-        setError={setError}
-        buttonsDisable={buttonsDisable}
-        setShowHistory={setShowHistory}
-        showHistory={showHistory}
-        purchaseHistoryHandler={purchaseHistoryHandler}
-      /></div>
+      <div>
+        <Header
+          loggedin={loggedin}
+          userName={userName}
+          search={search}
+          showProducts={showProducts}
+          showProductOption={showProductOption}
+          logoutHandler={logoutHandler}
+          setError={setError}
+          buttonsDisable={buttonsDisable}
+          setShowHistory={setShowHistory}
+          showHistory={showHistory}
+          purchaseHistoryHandler={purchaseHistoryHandler}
+        /></div>
 
       {(showTable) ? (
         <ItemList

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
+import { Card, CardBody, CardTitle, Button } from 'reactstrap';
 
 export default function Login(props) {
     const [password, setPassword] = useState("");
@@ -8,14 +7,14 @@ export default function Login(props) {
 
     return (
         <Card border="primary" className="loginSignup" bg="dark" style={{ color: "white" }}>
-            <Card.Body className='text-size'>
-                <Card.Title style={{
+            <CardBody className='text-size'>
+                <CardTitle style={{
                     height: "60px",
                     width: "60px",
                     backgroundColor: "lightblue",
                     marginLeft: "70px",
                     borderRadius: "50%",
-                }}></Card.Title>
+                }}></CardTitle>
 
                 Email:<input
                     type="text"
@@ -33,7 +32,7 @@ export default function Login(props) {
                     style={{ marginTop: "20px", marginLeft: "20px" }}
                 >Change Password
                     </Button>
-            </Card.Body>
+            </CardBody>
         </Card >
     );
 }

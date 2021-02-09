@@ -1,6 +1,5 @@
 import React from "react";
-import Table from 'react-bootstrap/Table';
-import Button from 'react-bootstrap/Button';
+import { Button, Table } from 'reactstrap';
 
 export default function Checkout(props) {
     let total = 0;

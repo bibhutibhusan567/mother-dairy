@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
+import { Card, CardBody, CardTitle, Button } from 'reactstrap';
 
 export default function LoginSignup(props) {
     const [userName, setUserName] = useState("");
@@ -9,14 +8,14 @@ export default function LoginSignup(props) {
 
     return (
         <Card border="primary" className="loginSignup" bg="dark" style={{ color: "white" }}>
-            <Card.Body className='text-size'>
-                <Card.Title style={{
+            <CardBody className='text-size'>
+                <CardTitle style={{
                     height: "60px",
                     width: "60px",
                     backgroundColor: "lightblue",
                     marginLeft: "70px",
                     borderRadius: "50%",
-                }}></Card.Title>
+                }}></CardTitle>
 
     User name:<input
                     style={{ textTransform: 'capitalize' }}
@@ -36,7 +35,7 @@ export default function LoginSignup(props) {
                     onClick={() => props.signupHandler(userName, email, password)}
                     style={{ marginTop: "10px", marginLeft: '55px' }}
                 >Sign Up</Button>
-            </Card.Body>
+            </CardBody>
         </Card >
     );
 }

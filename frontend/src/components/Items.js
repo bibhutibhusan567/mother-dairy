@@ -1,5 +1,4 @@
-import React from 'react';
-import Table from 'react-bootstrap/Table';
+import { Table } from 'reactstrap';
 
 export default function Items(props) {
     return (

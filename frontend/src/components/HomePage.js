@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import imageArray from '../images/HomeImage/ImageArray';
 import '../App.css';
 
@@ -18,7 +18,7 @@ export default function HomePage() {
                 disabled={index === 0}
             >{'<'}
             </button>
-            <img src={`${imageArray[index]}`} />
+            <img src={`${imageArray[index]}`} alt="" />
             <button
                 onClick={() => setIndex(index + 1)}
                 className="slideButton"

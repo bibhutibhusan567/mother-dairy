@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Items from './Items.js';
-import Button from 'react-bootstrap/Button';
+import { Button } from 'reactstrap';
 
 export default function Purchase(props) {
     const [showMore, setShowMore] = useState(false);

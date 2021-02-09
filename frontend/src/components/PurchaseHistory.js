@@ -1,12 +1,11 @@
-import React from 'react';
-import Table from 'react-bootstrap/Table';
+import { Table } from 'reactstrap';
 import Purchase from './Purchase';
 
 export default function PurchaseseHistory(props) {
     return (
         <>
             <div style={{ fontSize: "20px", marginLeft: "10%", }}>Purchase History</div>
-            <Table striped bordered variant="dark" style={{
+            <Table striped bordered dark style={{
                 width: "80%",
                 marginLeft: "10%",
                 marginTop: "40px",

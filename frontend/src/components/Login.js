@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
+import { Card, CardBody, CardTitle, Button } from 'reactstrap';
 import { useHistory } from "react-router-dom";
 
 export default function Login(props) {
@@ -10,14 +9,14 @@ export default function Login(props) {
 
     return (
         <Card border="primary" className="loginSignup" bg="dark" style={{ color: "white" }}>
-            <Card.Body className='text-size'>
-                <Card.Title style={{
+            <CardBody className='text-size'>
+                <CardTitle style={{
                     height: "60px",
                     width: "60px",
                     backgroundColor: "lightblue",
                     marginLeft: "70px",
                     borderRadius: "50%",
-                }}></Card.Title>
+                }}></CardTitle>
 
                         User name:<input
                     type="text"
@@ -61,7 +60,7 @@ export default function Login(props) {
                     >Signup
                             </span>
                 </div>
-            </Card.Body>
+            </CardBody>
         </Card >
     );
 }

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Card from 'react-bootstrap/Card';
+import { CardImg } from 'reactstrap';
 import '../App.css';
 
 export default function ImageSlide(props) {
@@ -18,7 +18,7 @@ export default function ImageSlide(props) {
                 disabled={index === 0}
             >{'<'}
             </button>
-            <Card.Img variant="top" src={`${props.imageArray[index]}`} style={{ height: "250px" }} />
+            <CardImg variant="top" src={`${props.imageArray[index]}`} style={{ height: "250px" }} />
             <button
                 style={{ right: "0px" }}
                 onClick={() => setIndex(index + 1)}
