@@ -5,7 +5,7 @@ export default function Checkout(props) {
     let total = 0;
     return (
         <>
-            <Table striped bordered hover variant="dark"
+            <Table striped bordered hover dark
                 style={{
                     width: "450px",
                     marginLeft: "30%",
@@ -41,7 +41,7 @@ export default function Checkout(props) {
                     </tr>
                 </tbody>
             </Table>
-            <Button variant="success" style={{ marginLeft: "355px" }} onClick={props.paymentProcess}>Proceed To Pay</Button>
+            <Button color="success" style={{ marginLeft: "355px" }} onClick={props.paymentProcess}>Proceed To Pay</Button>
         </>
     );
 }

@@ -5,7 +5,7 @@ export default function FinalGreeting(props) {
     props.purchaseItems.forEach((item) => finalAmount = finalAmount + item.itemPrice);
 
     return (
-        <Card bg="dark"
+        <Card color="dark"
             style={{ width: "400px", height: "auto", top: "100px", marginLeft: "300px" }}>
             <CardTitle style={{ fontSize: "20px", color: "white", backgroundColor: "purple" }}>
                 <div>Thanks for purchasing </div>

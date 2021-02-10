@@ -9,7 +9,7 @@ function ItemList(props) {
                     <div style={{ color: "red", fontSize: "30px", }}>{props.error}</div>
                 ) : (
                         <Table striped bordered hover dark style={{
-                            width: "450px",
+                            width: "480px",
                             marginLeft: "30px",
                             marginTop: "40px",
                         }}>

@@ -4,7 +4,7 @@ import Purchase from './Purchase';
 export default function PurchaseseHistory(props) {
     return (
         <>
-            <div style={{ fontSize: "20px", marginLeft: "10%", }}>Purchase History</div>
+
             <Table striped bordered dark style={{
                 width: "80%",
                 marginLeft: "10%",

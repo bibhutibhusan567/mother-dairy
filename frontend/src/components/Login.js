@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Card, CardBody, CardTitle, Button } from 'reactstrap';
 import { useHistory } from "react-router-dom";
+import avtar from '../images/avtar.png';
+
 
 export default function Login(props) {
     const [userName, setUserName] = useState("");
@@ -8,15 +10,11 @@ export default function Login(props) {
     let history = useHistory();
 
     return (
-        <Card border="primary" className="loginSignup" bg="dark" style={{ color: "white" }}>
-            <CardBody className='text-size'>
-                <CardTitle style={{
-                    height: "60px",
-                    width: "60px",
-                    backgroundColor: "lightblue",
-                    marginLeft: "70px",
-                    borderRadius: "50%",
-                }}></CardTitle>
+        <Card className="loginSignup" color="dark">
+            <CardBody className='flex-col'>
+                <CardTitle>
+                    <img className="avtar" src={avtar} alt="" />
+                </CardTitle>
 
                         User name:<input
                     type="text"
@@ -41,9 +39,10 @@ export default function Login(props) {
                                 </div>
                     </>
                 ) : null}
+                <br />
                 <Button
+                    color="success"
                     onClick={() => props.loginHandler(userName, password)}
-                    style={{ marginTop: "10px", marginLeft: '57px' }}
                 >Log In
                 </Button>
                 <div

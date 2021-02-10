@@ -1,20 +1,17 @@
 import React, { useState } from 'react';
 import { Card, CardBody, CardTitle, Button } from 'reactstrap';
+import avtar from '../images/avtar.png';
 
 export default function Login(props) {
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
 
     return (
-        <Card border="primary" className="loginSignup" bg="dark" style={{ color: "white" }}>
-            <CardBody className='text-size'>
-                <CardTitle style={{
-                    height: "60px",
-                    width: "60px",
-                    backgroundColor: "lightblue",
-                    marginLeft: "70px",
-                    borderRadius: "50%",
-                }}></CardTitle>
+        <Card className="loginSignup" color="dark">
+            <CardBody className='flex-col'>
+                <CardTitle>
+                    <img className="avtar" src={avtar} alt="" />
+                </CardTitle>
 
                 Email:<input
                     type="text"
@@ -27,9 +24,10 @@ export default function Login(props) {
                 {props.error ? (
                     <div className="error">{props.error}</div>
                 ) : null}
+                <br />
                 <Button
+                    color="primary"
                     onClick={() => props.changePasswordHandler(email, password)}
-                    style={{ marginTop: "20px", marginLeft: "20px" }}
                 >Change Password
                     </Button>
             </CardBody>

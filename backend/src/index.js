@@ -4,24 +4,26 @@ const express = require('express');
 const cors = require('cors');
 const bcrypt = require('bcrypt');
 const session = require('express-session');
-
-const session_secret = "Bibhuti@123";
+const dotenv = require('dotenv');
 
 const app = express();
 app.use(express.json());
+
 app.use(cors({
   credentials: true,
   origin: 'http://localhost:3000'
 }));
 
+dotenv.config();
+
 app.use(session(
   {
-    secret: session_secret,
+    secret: process.env.SESSION_SECRET,
     cookie: { maxAge: 1 * 60 * 60 * 1000 }
   }
 ));//add special property called session to req
 
-const db = mongoose.createConnection('mongodb://localhost:27017/Motherdairy', { useNewUrlParser: true, useUnifiedTopology: true });
+const db = mongoose.createConnection(`${process.env.DB_URL}`, { useNewUrlParser: true, useUnifiedTopology: true });
 
 const userSchema = new mongoose.Schema({
   userName: String,
@@ -194,4 +196,4 @@ app.get(`/search/:searchItem`, async (req, res) => {
     res.status(404).send({ error: `${searchItem} is not available currently` });
   }
 });
-app.listen(8080, () => console.log(`DB is listening to port 8080`));
+app.listen(process.env.PORT, () => console.log(`DB is listening to port ${process.env.PORT}`));

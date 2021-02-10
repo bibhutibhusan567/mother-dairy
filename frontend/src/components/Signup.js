@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Card, CardBody, CardTitle, Button } from 'reactstrap';
+import avtar from '../images/avtar.png';
 
 export default function LoginSignup(props) {
     const [userName, setUserName] = useState("");
@@ -7,33 +8,30 @@ export default function LoginSignup(props) {
     const [email, setEmail] = useState("");
 
     return (
-        <Card border="primary" className="loginSignup" bg="dark" style={{ color: "white" }}>
-            <CardBody className='text-size'>
-                <CardTitle style={{
-                    height: "60px",
-                    width: "60px",
-                    backgroundColor: "lightblue",
-                    marginLeft: "70px",
-                    borderRadius: "50%",
-                }}></CardTitle>
+        <Card className="loginSignup" color="dark">
+            <CardBody className='flex-col'>
+                <CardTitle>
+                    <img className="avtar" src={avtar} alt="" />
+                </CardTitle>
 
-    User name:<input
+    User name<input
                     style={{ textTransform: 'capitalize' }}
                     type="text"
                     placeholder="User Name"
                     onChange={(event) => setUserName(event.target.value)} />
-    Email:<input
+    Email<input
                     type="email"
                     placeholder="Email"
                     onChange={(event) => setEmail(event.target.value)} />
-    Password:<input
+    Password<input
                     type="password"
                     placeholder="Password"
-                    onChange={(event) => setPassword(event.target.value)}></input>
+                    onChange={(event) => setPassword(event.target.value)} />
                 {props.error ? (<div className="error">{props.error}</div>) : null}
+                <br />
                 <Button
+                    color="success"
                     onClick={() => props.signupHandler(userName, email, password)}
-                    style={{ marginTop: "10px", marginLeft: '55px' }}
                 >Sign Up</Button>
             </CardBody>
         </Card >

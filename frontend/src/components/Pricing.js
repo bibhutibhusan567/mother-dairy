@@ -52,7 +52,7 @@ export default function Pricing(props) {
                                     </div>
 
                                 </CardText>
-                                <Button variant="primary" onClick={() => showProduct(product.product)}>Purchase</Button>
+                                <Button color="primary" onClick={() => showProduct(product.product)}>Purchase</Button>
                             </ CardBody>
                         </Card >
                     );

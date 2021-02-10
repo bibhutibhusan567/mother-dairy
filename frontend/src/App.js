@@ -42,6 +42,9 @@ function App() {
   const [history, setHistory] = useState([]);
   const [showHistory, setShowHistory] = useState(false);
 
+
+
+
   //number of Items function
   const confirm = (count) => {
     console.log("final", count);
@@ -151,7 +154,7 @@ function App() {
   });
 
   const getUserName = () => {
-    return fetch('http://localhost:8080/userinfo', { credentials: 'include' })
+    return fetch(`${process.env.React_App_BACKEND_URL}/userinfo`, { credentials: 'include' })
       .then((r) => {
         if (r.ok) {
           return r.json();
@@ -175,7 +178,7 @@ function App() {
     } else {
       userName = capitaliseFirst(userName.trim());
       console.log(userName);
-      fetch('http://localhost:8080/login',
+      fetch(`${process.env.React_App_BACKEND_URL}/login`,
         {
           method: "POST",
           body: JSON.stringify({ userName, password }),
@@ -222,7 +225,7 @@ function App() {
     } else {
       userName = capitaliseFirst(userName.trim());
       console.log(userName);
-      fetch("http://localhost:8080/signup",
+      fetch(`${process.env.React_App_BACKEND_URL}/signup`,
         {
           method: "post",
           body: JSON.stringify({ userName, email, password }),
@@ -266,7 +269,7 @@ function App() {
   };
   //logout Handler
   const logoutHandler = (userName) => {
-    fetch('http://localhost:8080/logout',
+    fetch(`${process.env.React_App_BACKEND_URL}/logout`,
       {
         credentials: 'include'
       })
@@ -284,7 +287,7 @@ function App() {
       setError("Please fill the required fields first")
     }
     else {
-      fetch('http://localhost:8080/updatepassword',
+      fetch(`${process.env.React_App_BACKEND_URL}/updatepassword`,
         {
           method: "post",
           body: JSON.stringify({ email, password }),
@@ -321,7 +324,7 @@ function App() {
     }, 0);
     console.log(totalAmount);
 
-    fetch('http://localhost:8080/purchasehistory',
+    fetch(`${process.env.React_App_BACKEND_URL}/purchasehistory`,
       {
         method: 'post',
         body: JSON.stringify({ purchaseItems, userName, totalAmount }),
@@ -335,7 +338,7 @@ function App() {
   }
   //get Purchase History for User
   const purchaseHistoryHandler = (userName) => {
-    fetch(`http://localhost:8080/gethistory/${userName}`, { credentials: 'include' })
+    fetch(`${process.env.React_App_BACKEND_URL}/gethistory/${userName}`, { credentials: 'include' })
       .then((res) => res.json())
       .then((res) => {
         if (res.error !== undefined) {
@@ -391,7 +394,7 @@ function App() {
       if (searchItem === "kulfies") {
         searchItem = "kulfi";
       }
-      fetch(`http://localhost:8080/search/${searchItem}`,
+      fetch(`${process.env.React_App_BACKEND_URL}/search/${searchItem}`,
         { credentials: 'include' })
         .then((res) => res.json())
         .then((res) => {
@@ -435,21 +438,19 @@ function App() {
 
   return (
     <div className="App" >
-      <div>
-        <Header
-          loggedin={loggedin}
-          userName={userName}
-          search={search}
-          showProducts={showProducts}
-          showProductOption={showProductOption}
-          logoutHandler={logoutHandler}
-          setError={setError}
-          buttonsDisable={buttonsDisable}
-          setShowHistory={setShowHistory}
-          showHistory={showHistory}
-          purchaseHistoryHandler={purchaseHistoryHandler}
-        /></div>
-
+      <Header
+        loggedin={loggedin}
+        userName={userName}
+        search={search}
+        showProducts={showProducts}
+        showProductOption={showProductOption}
+        logoutHandler={logoutHandler}
+        setError={setError}
+        buttonsDisable={buttonsDisable}
+        setShowHistory={setShowHistory}
+        showHistory={showHistory}
+        purchaseHistoryHandler={purchaseHistoryHandler}
+      />
       {(showTable) ? (
         <ItemList
           productArray={productArray}
@@ -481,40 +482,43 @@ function App() {
         null
       ) : (
           <>
-            { showMessage ? (<div style={{ marginLeft: "10px", color: "red", fontSize: "20px" }} > Please Login or Signup for further process</div>) : null}
+            {showMessage ? (<div style={{ marginLeft: "10px", color: "red", fontSize: "20px" }} > Please Login or Signup for further process</div>) : null}
           </>
         )}
-      { showFinalGreeting ? (<FinalGreeting userName={userName} purchaseItems={purchaseItems} />) : null}
-      <Switch>
-        <Route path="/login">
-          <Login
-            error={error}
-            setError={setError}
-            loginHandler={loginHandler} />
-        </Route>
-        <Route path="/signup">
-          <Signup
-            error={error}
-            signupHandler={signupHandler} />
-        </Route>
-        <Route path="/changepassword">
-          <ChangePassword
-            error={error}
-            changePasswordHandler={changePasswordHandler} />
-        </Route>
-        <Route path="/home">
-          <HomePage />
-        </Route>
-        <Route exact path="/">
-          <HomePage />
-        </Route>
-        <Route path="/pricing">
-          <Pricing showProducts={showProducts} />
-        </Route>
-        <Route path="/history">
-          <PurchaseHistory history={history} />
-        </Route>
-      </Switch>
+      <div className="flex-row">
+
+        {showFinalGreeting ? (<FinalGreeting userName={userName} purchaseItems={purchaseItems} />) : null}
+        <Switch>
+          <Route path="/login">
+            <Login
+              error={error}
+              setError={setError}
+              loginHandler={loginHandler} />
+          </Route>
+          <Route path="/signup">
+            <Signup
+              error={error}
+              signupHandler={signupHandler} />
+          </Route>
+          <Route path="/changepassword">
+            <ChangePassword
+              error={error}
+              changePasswordHandler={changePasswordHandler} />
+          </Route>
+          <Route path="/home">
+            <HomePage />
+          </Route>
+          <Route exact path="/">
+            <HomePage />
+          </Route>
+          <Route path="/pricing">
+            <Pricing showProducts={showProducts} />
+          </Route>
+          <Route path="/history">
+            <PurchaseHistory history={history} />
+          </Route>
+        </Switch>
+      </div>
     </div >
   );
 }

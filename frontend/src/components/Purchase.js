@@ -29,13 +29,13 @@ export default function Purchase(props) {
                         {showItems ? (
                             <>
                                 <div onClick={() => setShowItems(!showItems)} style={{ textAlign: "left" }}>Products Detalis
-                                    <Button variant="dark" style={{ margin: "10px" }}> v </Button>
+                                    <Button color="dark" style={{ margin: "10px" }}> v </Button>
                                 </div>
                                 <Items itemsArray={props.order.purchaseItems} />
                             </>
                         ) : (
                                 <div onClick={() => setShowItems(!showItems)}>Products Details
-                                    <Button variant="dark" style={{ margin: "10px" }}> {'>'} </Button></div>
+                                    <Button color="dark" style={{ margin: "10px" }}> {'>'} </Button></div>
                             )}
                     </td>
                 </tr>

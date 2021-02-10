@@ -14,7 +14,7 @@ function Header(props) {
     let history = useHistory();
 
     const toggle = () => setIsOpen(!isOpen);
-    const toggleButton = () => setOpen(!dropdownOpen);
+    // const toggleButton = () => setOpen(!dropdownOpen);
 
     if (!SpeechRecognition.browserSupportsSpeechRecognition()) {
         return null
@@ -39,19 +39,16 @@ function Header(props) {
         setSearchValue(event.target.value.trim());
     }
 
-    return (<>
+    return (<div>
 
         <Navbar color="dark" dark style={{ color: "white" }}>
-            <NavbarBrand href="home" className="logo">Mother Dairy</NavbarBrand>
+            <NavbarBrand href="home" className="Pacifico">Mother Dairy</NavbarBrand>
             <Nav className="mr-auto">
-                <NavItem>
-                    <NavLink href="/home">Home</NavLink>
-                </NavItem>
-
-                <NavLink href="/pricing">Pricing</NavLink>
+                <NavLink href="/home" className="link">Home</NavLink>
+                <NavLink href="/pricing" className="link">Pricing</NavLink>
                 {props.showProductOption ? (
                     <UncontrolledDropdown nav inNavbar>
-                        <DropdownToggle nav caret id="nav-dropdown" toggle={toggle} >
+                        <DropdownToggle className="link" nav caret id="nav-dropdown" toggle={toggle} onClick={() => history.push('/products')}>
                             Products
               </DropdownToggle>
                         <DropdownMenu>
@@ -63,21 +60,23 @@ function Header(props) {
                             <DropdownItem onClick={() => props.showProducts("Cheese")}>Cheese</DropdownItem>
                             <DropdownItem onClick={() => props.showProducts("Sweet")}>Sweets</DropdownItem>
 
-                            <ButtonDropdown isOpen={dropdownOpen} toggle={toggleButton}>
-                                <DropdownToggle caret>
-                                    Ice-cream
+                            <DropdownToggle onClick={() => {
+                                history.push('/products');
+                                setOpen(!dropdownOpen);
+                            }}>
+                                Ice-cream
                             </DropdownToggle>
-                                <DropdownMenu>
-                                    <DropdownItem onClick={() => props.showProducts("Bricks And Super Saver Packs")}>Bricks And Super Saver Packs</DropdownItem>
-                                    <DropdownItem onClick={() => props.showProducts("Bar")}>Bars</DropdownItem>
-                                    <DropdownItem onClick={() => props.showProducts("Cone")}>Cones</DropdownItem>
-                                    <DropdownItem onClick={() => props.showProducts("Kulfi")}>Kulfi</DropdownItem>
-                                </DropdownMenu>
-                            </ButtonDropdown>
+                            <DropdownMenu>
+                                <DropdownItem onClick={() => props.showProducts("Bricks And Super Saver Packs")}>Bricks And Super Saver Packs</DropdownItem>
+                                <DropdownItem onClick={() => props.showProducts("Bar")}>Bars</DropdownItem>
+                                <DropdownItem onClick={() => props.showProducts("Cone")}>Cones</DropdownItem>
+                                <DropdownItem onClick={() => props.showProducts("Kulfi")}>Kulfi</DropdownItem>
+                            </DropdownMenu>
                         </DropdownMenu>
                     </UncontrolledDropdown>
                 ) : null}
                 {props.loggedin ? (<NavLink
+                    className="link"
                     onClick={() => {
                         props.purchaseHistoryHandler(props.userName);
                         history.push('/history')
@@ -104,9 +103,10 @@ function Header(props) {
                         onClick={startMic}
                     ></i>
                 )}
+
             {props.loggedin ? (
                 <>
-                    <span className="userName">{props.userName}</span>
+                    <span className="userName Lobster">{props.userName}</span>
                     <Button onClick={() => props.logoutHandler(props.userName)} variant="danger" className="logout">Log Out</Button>
 
                 </>
@@ -133,7 +133,7 @@ function Header(props) {
                     </>
                 )}
         </Navbar >
-    </>
+    </div>
     )
 }
 export default Header;
