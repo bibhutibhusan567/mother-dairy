@@ -6,7 +6,7 @@ export default function FinalGreeting(props) {
 
     return (
         <Card color="dark"
-            style={{ width: "400px", height: "auto", top: "100px", marginLeft: "300px" }}>
+            style={{ width: "400px" }}>
             <CardTitle style={{ fontSize: "20px", color: "white", backgroundColor: "purple" }}>
                 <div>Thanks for purchasing </div>
                 <div style={{ fontStyle: "italic", color: "black", fontWeight: "bold" }}>{props.userName}</div>

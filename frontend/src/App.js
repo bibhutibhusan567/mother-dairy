@@ -10,7 +10,7 @@ import Signup from "./components/Signup";
 import ChangePassword from "./components/ChangePassword";
 import HomePage from './components/HomePage';
 import Pricing from './components/Pricing';
-import { useHistory } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import { Switch, Route } from "react-router-dom";
 import './App.css';
@@ -36,8 +36,6 @@ function App() {
   const [purchaseItems, setPurchaseItems] = useState([]);
   const [loggedin, setLoggedin] = useState(false);
   const [userName, setUserName] = useState("");
-  const [showMessage, setShowMessage] = useState(false);
-  const [showFinalGreeting, setShowFinalGreeting] = useState(false);
   const [proceedToPay, setProceedToPay] = useState(false);
   const [buttonsDisable, setButtonsDisable] = useState(false);
   const [history, setHistory] = useState([]);
@@ -59,17 +57,12 @@ function App() {
     if (!loggedin) {
       console.log("not logged in");
       setShowCart(false);
-      setShowMessage(true);
       setButtonsDisable(true);
       newhistory.push("/login");
     } else if (loggedin) {
       createPurchaseHistory(userName);
       setShowCart(false);
-      setShowFinalGreeting(true);
       setShowProductOption(true);
-      setTimeout(() => {
-        setShowFinalGreeting(false);
-      }, 10 * 1000);
     }
   }
   //duration function
@@ -200,16 +193,13 @@ function App() {
             console.log("Login sucessfull");
             setLoggedin(true);
             setUserName(userName);
-            setShowMessage(false);
             getUserName();
             newhistory.push('/');
             if (proceedToPay) {
               paymentProcess();
               createPurchaseHistory(userName);
               setShowCart(false);
-              setShowFinalGreeting(true);
               setTimeout(() => {
-                setShowFinalGreeting(false);
               }, 10 * 1000);
             }
           } else {
@@ -256,10 +246,6 @@ function App() {
               paymentProcess();
               createPurchaseHistory(userName);
               setShowCart(false);
-              setShowFinalGreeting(true);
-              setTimeout(() => {
-                setShowFinalGreeting(false);
-              }, 10 * 1000);
             }
           } else {
             setError(res.error);
@@ -515,23 +501,14 @@ function App() {
                       showConfirmButton={showConfirmButton}
                     />) : null}
                 </Col>
-                <Col>
-                  {showCart ? (<CheckOut purchaseItems={purchaseItems} paymentProcess={paymentProcess} />) : null}
-                </Col>
-                <Col>
-                  {loggedin ? (
-                    null
-                  ) : (
-                      <>
-                        {showMessage ? (<div style={{ marginLeft: "10px", color: "red", fontSize: "20px" }} > Please Login or Signup for further process</div>) : null}
-                      </>
-                    )}
-                </Col>
-                <Col>
-                  {showFinalGreeting ? (<FinalGreeting userName={userName} purchaseItems={purchaseItems} />) : null}
-                </Col>
+
+                {showCart ? (<CheckOut purchaseItems={purchaseItems} paymentProcess={paymentProcess} />) : null}
+
               </Row>
             </div>
+          </Route>
+          <Route path='/purchasedone'>
+            {loggedin ? <FinalGreeting userName={userName} purchaseItems={purchaseItems} /> : <Redirect to="/login" />}
           </Route>
         </Switch>
       </div>
