@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Card, CardBody, CardTitle, Button } from 'reactstrap';
+import { Card, CardBody, CardTitle, Button, Row, Col } from 'reactstrap';
 import { useHistory } from "react-router-dom";
 import avtar from '../images/avtar.png';
 

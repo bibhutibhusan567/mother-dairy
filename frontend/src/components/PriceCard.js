@@ -5,10 +5,8 @@ function PriceCard(props) {
     return (
         <Card className="loginSignup" color="dark" style={{
             color: "white",
-            width: "350px",
-            justifyContent: "center",
-            marginLeft: "32%",
-            marginTop: "40px"
+            width: "30rem",
+
         }}>
             <CardTitle >Here Is Your Final Amount</CardTitle>
             <CardBody className='flex-col' style={{ backgroundColor: "rgb(12, 65, 90)" }}>

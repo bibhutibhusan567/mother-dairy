@@ -14,6 +14,7 @@ import { useHistory } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import { Switch, Route } from "react-router-dom";
 import './App.css';
+import { Col, Row } from 'reactstrap';
 
 function App() {
   let newhistory = useHistory();
@@ -451,43 +452,7 @@ function App() {
         showHistory={showHistory}
         purchaseHistoryHandler={purchaseHistoryHandler}
       />
-      {(showTable) ? (
-        <ItemList
-          productArray={productArray}
-          selectedProduct={selectedProduct}
-          error={error}
-          getPrice={getPrice}
-          price={price}
-        />) : null}
-
-      {(showPriceCard) ? (
-        <PriceCard
-          finalPrice={finalPrice}
-          price={price}
-          numberOfDays={numberOfDays}
-          purchaseMore={purchaseMore}
-          checkOut={checkOut}
-        />) : null}
-
-      {(price !== 0 && !showCard) ? (
-        <Duration
-          confirm={confirm}
-          price={price}
-          addToCart={addToCart}
-          discountPrice={discountPrice}
-          showConfirmButton={showConfirmButton}
-        />) : null}
-      {showCart ? (<CheckOut purchaseItems={purchaseItems} paymentProcess={paymentProcess} />) : null}
-      {loggedin ? (
-        null
-      ) : (
-          <>
-            {showMessage ? (<div style={{ marginLeft: "10px", color: "red", fontSize: "20px" }} > Please Login or Signup for further process</div>) : null}
-          </>
-        )}
-      <div className="flex-row">
-
-        {showFinalGreeting ? (<FinalGreeting userName={userName} purchaseItems={purchaseItems} />) : null}
+      <div className="center">
         <Switch>
           <Route path="/login">
             <Login
@@ -516,6 +481,57 @@ function App() {
           </Route>
           <Route path="/history">
             <PurchaseHistory history={history} />
+          </Route>
+          <Route path="/products">
+            <div className="flex_row">
+              <Row>
+                <Col>
+                  {(showTable) ? (
+                    <ItemList
+                      productArray={productArray}
+                      selectedProduct={selectedProduct}
+                      error={error}
+                      getPrice={getPrice}
+                      price={price}
+                    />) : null}
+                </Col>
+                <Col>
+                  {(showPriceCard) ? (
+                    <PriceCard
+                      finalPrice={finalPrice}
+                      price={price}
+                      numberOfDays={numberOfDays}
+                      purchaseMore={purchaseMore}
+                      checkOut={checkOut}
+                    />) : null}
+                </Col>
+                <Col>
+                  {(price !== 0 && !showCard) ? (
+                    <Duration
+                      confirm={confirm}
+                      price={price}
+                      addToCart={addToCart}
+                      discountPrice={discountPrice}
+                      showConfirmButton={showConfirmButton}
+                    />) : null}
+                </Col>
+                <Col>
+                  {showCart ? (<CheckOut purchaseItems={purchaseItems} paymentProcess={paymentProcess} />) : null}
+                </Col>
+                <Col>
+                  {loggedin ? (
+                    null
+                  ) : (
+                      <>
+                        {showMessage ? (<div style={{ marginLeft: "10px", color: "red", fontSize: "20px" }} > Please Login or Signup for further process</div>) : null}
+                      </>
+                    )}
+                </Col>
+                <Col>
+                  {showFinalGreeting ? (<FinalGreeting userName={userName} purchaseItems={purchaseItems} />) : null}
+                </Col>
+              </Row>
+            </div>
           </Route>
         </Switch>
       </div>

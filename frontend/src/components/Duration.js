@@ -8,8 +8,7 @@ function Duration(props) {
     return (
         <>
             {!done ? (
-                <Card color="dark"
-                    style={{ width: "400px", position: "fixed", height: "auto", marginLeft: "550px", top: "120px" }}>
+                <Card color="dark" style={{ width: "30rem", margin: "10%" }}>
                     <CardTitle style={{ fontSize: "20px", color: "white", backgroundColor: "purple" }}>
                         Select Number of items
             </CardTitle>
@@ -32,7 +31,7 @@ function Duration(props) {
                 </Card>
             ) : (
                     (<Card color="dark"
-                        style={{ width: "500px", position: "fixed", height: "auto", marginLeft: "500px", top: "100px" }}>
+                        style={{ width: "30rem", margin: "10%" }}>
                         <CardTitle style={{ fontSize: "20px", color: "white", backgroundColor: "purple" }}>
                             Here Is Your Discounts <span>&#128522;</span>
                         </CardTitle>
@@ -43,16 +42,20 @@ function Duration(props) {
                             }}>
 
                             <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
-                                <div style={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "center" }}>
 
-                                    <div>For 1Day you will get no discount.
-                            <span>&#128542;</span>
+                                <div style={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "center" }}>
+                                    <div>
+                                        <div>For 1Day you will get no discount.
+                            <span>&#128542;</span></div>
+                                        <br />
                                         <Button id="1" color="danger" onClick={props.discountPrice}>For 1 Day</Button>
-                                        <div style={{ color: "red", fontSize: "60px" }}>&#10008;</div>
+                                        <br />
+                                        <div style={{ color: "red", fontSize: "40px" }}>&#10008;</div>
                                     </div>
 
-                                    <div>For 1week you will get 5% discount.
-                            <span>&#128522;</span>
+                                    <div>
+                                        <div>For 1week you will get 5% discount.
+                            <span>&#128522;</span></div>
                                         <br />
                                         <Button id="7" color="warning"
                                             onClick={props.discountPrice}
@@ -60,8 +63,9 @@ function Duration(props) {
                                         <div>You will save {Math.round(props.price * 0.05 * 7)}&#8377; for this product.</div>
                                     </div>
 
-                                    <div>For 1Month you will get 8% discount.
-                            <span>&#128515;</span>
+                                    <div>
+                                        <div>For 1Month you will get 8% discount.
+                            <span>&#128515;</span></div>
                                         <br />
                                         <Button id="30" color="primary" onClick={props.discountPrice}>For 1 Month</Button>
                                         <div>You will save {Math.round(props.price * 0.08 * 30)}&#8377; for this product.</div>
@@ -69,7 +73,7 @@ function Duration(props) {
 
                                 </div>
 
-                                <div style={{ marginTop: "40px" }}>
+                                <div style={{ margin: "40px" }}>
                                     {props.showConfirmButton ? <Button onClick={props.addToCart} color="success" style={{ width: "200px" }}>
                                         Confirm</Button> : <span style={{ color: "orange" }}>Pick Your Offer</span>}
                                 </div>

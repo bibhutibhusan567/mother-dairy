@@ -8,11 +8,7 @@ function ItemList(props) {
                 (props.error !== undefined) ? (
                     <div style={{ color: "red", fontSize: "30px", }}>{props.error}</div>
                 ) : (
-                        <Table striped bordered hover dark style={{
-                            width: "480px",
-                            marginLeft: "30px",
-                            marginTop: "40px",
-                        }}>
+                        <Table striped bordered hover dark style={{ width: "30rem", margin: "10%" }}>
 
                             <thead>
                                 <tr><th>Item No.</th><th>Types Of {props.selectedProduct}</th><th>Quantity</th><th>Price &#8377;</th>

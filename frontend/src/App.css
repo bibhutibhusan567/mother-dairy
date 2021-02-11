@@ -2,7 +2,12 @@
   text-align: center;
   font-size:large;
   min-height: 100vh;
-  background:linear-gradient(to right top,#9bebdc,#3fb6b0)
+  background:linear-gradient(to right top,#9bebdc,#3fb6b0);
+}
+.center{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .flex-row{
@@ -23,12 +28,10 @@ font-size: small;
 }
 
 .loginSignup{
-  margin-top: 20px;
   width: 30%;
   color:white;
-  border-radius: 40px;
+  margin: 10%;
 }
-
 
 .avtar{
   height: 100px;
@@ -74,13 +77,6 @@ i{
 input{
   outline:none;
   border-radius: 15px;
-}
-.navbar{
-  width: 100%;
-  height: 60px;
-  font-weight: 400;
-  font-size: 18px;
-  background-color: #188ded;
 }
 
 tr{
